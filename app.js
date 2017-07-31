@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var mongo = require('mongodb');
-var monk = require('monk')
-
+var monk = require('monk');
+var db = monk('localhost:27017/projectbkwrm');
 
 
 var index = require('./routes/index');
@@ -28,6 +28,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// make db accessible to router
+app.use(function(req,res,next){
+  req.db = db;
+  next();
+});
 
 app.use('/', index);
 app.use('/users', users);

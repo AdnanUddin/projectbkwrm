@@ -7,4 +7,12 @@ router.get('/', function(req, res, next) {
   res.sendFile(__dirname + '/' + 'index.html');
 });
 
+router.get('/list_users', function(req,res){
+  var db = req.db;
+  var collection = db.get('users');
+  collection.find({},{}, function(e,docs){
+    res.send(docs);
+  });
+});
+
 module.exports = router;
