@@ -5,6 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mongo = require('mongodb');
+var monk = require('monk')
+
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -45,15 +50,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-// app.get('/', function(req,res){
-//     res.sendFile(__dirname + '/' + 'index.html');
-// });
-  
 module.exports = app;
-
-// var server = app.listen(8081, "127.0.0.1", function(req,res){
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("example app listening to http://%s:%s", host, port);
-// });
