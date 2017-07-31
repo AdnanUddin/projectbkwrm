@@ -1,7 +1,7 @@
+To start application:
 
-## Install modules
 ```
 
-npm install
+npm start
 
 ```
