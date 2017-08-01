@@ -6,8 +6,4 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/123', function(req, res, next) {
-  res.send('123');
-});
-
 module.exports = router;

@@ -5,14 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/projectbkwrm');
+// var mongo = require('mongodb');
+var mongoose = require('mongoose');
+// var monk = require('monk');
+// var db = monk('localhost:27017/projectbkwrm');
 
+//models
+var User = require('./api/model/userModel');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var api = require('./routes/api');
+// var api = require('./routes/api');
 
 var app = express();
 
@@ -26,19 +29,24 @@ var app = express();
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // make db accessible to router
-app.use(function(req,res,next){
-  req.db = db;
-  next();
-});
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/projectbkwrm', {useMongoClient: true} );
+
+var routes = require('./api/routes/userRoutes');
+routes(app);
+// app.use(function(req,res,next){
+//   req.db = db;
+//   next();
+// });
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/api', api);
+// app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
