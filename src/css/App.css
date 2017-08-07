@@ -1,3 +1,56 @@
 body {
     margin: 0;
+    color: rgba(0,0,0,.87);
+}
+
+.center-text {
+    text-align:center;
+}
+
+.max-width {
+    max-width: 1280px;
+}
+
+#app-logo {
+    min-height: 400px;
+    background-image: url("../img/pic-2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#app-logo > h2  {
+    margin-top: 0px;
+    padding-top: 0.83em;
+}
+
+#login-btn {
+    left: 50%;
+
+}
+
+
+#feature1 {
+    background-image: url("../img/pic-0.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    min-height: 500px;
+}
+
+#feature2 {
+    background-image: url("../img/pic-1.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    min-height: 500px;
+}
+
+.footer {
+    margin-top: 144px;
+    height: 192px;
+    line-height: 0.04em;
+    font-size: 0.875rem;
+    letter-spacing: .04em;
+    background: #fafafa;
 }
