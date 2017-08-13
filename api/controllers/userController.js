@@ -12,7 +12,7 @@ exports.list_all_users = function(req,res){
 };
 
 exports.get_user = function(req,res){
-    User.findOne({'username': req.params.username }, function(err,user){
+    User.findOne({'_id': req.params._id }, function(err,user){
         if (err){
             res.send(err);
         }

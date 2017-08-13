@@ -7,23 +7,20 @@ var bodyParser = require('body-parser');
 
 // var mongo = require('mongodb');
 var mongoose = require('mongoose');
-// var monk = require('monk');
-// var db = monk('localhost:27017/projectbkwrm');
 
-//models
+//db models
 var User = require('./api/model/userModel');
+var Book = require('./api/model/bookModel');
+var Listing = require('./api/model/listingModel');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
-// var api = require('./routes/api');
+// var users = require('./routes/users');
 
 var app = express();
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
-// app.engine('html', require('ejs').renderFile);
-// app.use(express.static(path.join(__dirname,'public')));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -33,20 +30,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// make db accessible to router
+// connect to db
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/projectbkwrm', {useMongoClient: true} );
 
-var routes = require('./api/routes/userRoutes');
-routes(app);
-// app.use(function(req,res,next){
-//   req.db = db;
-//   next();
-// });
+var bookroutes = require('./api/routes/bookRoutes');
+var userroutes = require('./api/routes/userRoutes');
+var listingroutes = require('./api/routes/listingRoutes');
+
+userroutes(app);
+bookroutes(app);
+listingroutes(app);
 
 app.use('/', index);
-app.use('/users', users);
-// app.use('/api', api);
+// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
