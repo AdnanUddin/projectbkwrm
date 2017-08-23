@@ -46,6 +46,11 @@ body {
     min-height: 500px;
 }
 
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .footer {
     margin-top: 144px;
     height: 192px;
